@@ -39,12 +39,12 @@ function initGame(newgame) {
 		stopTrailer();
 
 		console.log("sajt")
-		if (dbHighscore < 100) {
-			dbHighscore = getHighestScore();
-			console.log(HIGHSCORE, " =? ", dbHighscore)
+		if (DBHIGHSCORE < 100) {
+			DBHIGHSCORE = getHighestScore();
+			console.log(HIGHSCORE, " =? ", DBHIGHSCORE)
 		}
 		else {
-			HIGHSCORE = dbHighscore;
+			HIGHSCORE = DBHIGHSCORE;
 		}
 		HOME = false;
 		GAMEOVER = false;
