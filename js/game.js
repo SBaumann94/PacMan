@@ -49,6 +49,7 @@ function initGame(newgame) {
 			HIGHSCORE = DBHIGHSCORE;
 		}
 		getCouponCode().then(res => {
+			console.log("Recieved: ",COUPONCODE)
 			setCouponGiven();
 		});
 		HOME = false;
@@ -427,6 +428,7 @@ function updateHighscore(s, e) {
 	//	if (s === HIGHSCORE) {
 	return fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
 		method: 'post',
+		mode: 'cors',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({
 			score: s,
