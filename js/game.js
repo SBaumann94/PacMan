@@ -460,7 +460,7 @@ function getCouponCode() {
 		.catch(console.log)
 }
 function setCouponGiven() {
-	fetch('https://desolate-citadel-62473.herokuapp.com/setCoupon', {
+	return fetch('https://desolate-citadel-62473.herokuapp.com/setCoupon', {
 		method: 'put',
 		mode: 'cors',
 		headers: { 'Content-Type': 'application/json' },
