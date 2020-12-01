@@ -424,7 +424,6 @@ function getHighestScore() {
 		.catch(console.log)
 }
 function updateHighscore(s, e) {
-	if (s === HIGHSCORE) {
 		return fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
@@ -437,7 +436,8 @@ function updateHighscore(s, e) {
 				if (response) { }
 			})
 			.catch(err => console.log("Unable to reach Heroku server"));
-	} else {
+/* 	} else {
 		return "Unauthorized set attempt at updateHighscore."
 	}
+ */
 }
