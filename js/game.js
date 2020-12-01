@@ -405,7 +405,7 @@ function getHighestScore() {
 				alert(s)
 			}
 		})
-		.catch(console.log)
+		.catch(console.log("sajt"))
 }
 function updateHighscore(s, e) {
 	fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
