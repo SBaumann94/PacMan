@@ -311,7 +311,7 @@ function gameover() {
 		//Getting the e-mail of the new top player
 		const congratsText = "Gratulálunk, megdöntötted a rekordot!\nAdd meg az e-mail címed és ha december 24-ig te maradsz a toplista élén megajádnékozunk egy általad választott 32 centis pizzával!"
 		var email = prompt(congratsText);
-		while (email == null || person.trim().length < 5) {
+		while (email == null || email.trim().length < 5) {
 			email = prompt(congratsText);
 		}
 		updateHighscore(SCORE, email);
