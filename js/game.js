@@ -11,7 +11,7 @@ var SCORE_BUBBLE = 1;
 var SCORE_SUPER_BUBBLE = 5;
 var SCORE_GHOST_COMBO = 100;
 
-var LIFES = 2;
+var LIFES = 0;
 var GAMEOVER = false;
 
 var LEVEL = 1;
