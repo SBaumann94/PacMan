@@ -306,14 +306,15 @@ function gameover() {
 
 	resetPacman();
 	resetGhosts();
-	if (false) {//new highscore
+	if (SCORE > DBHIGHSCORE) {//new highscore
 
 		//Getting the e-mail of the new top player
-		const congratsText = "Gratulálunk, megdöntötted a rekordot!\nAdd meg az e-mail címed és ha december 24.ig te maradsz a toplista élén megajádnékozunk egy általad választott 32 centis pizzával!"
-		var person = prompt(congratsText);
-		while (person == null || person.trim().length < 5) {
-			person = prompt(congratsText);
+		const congratsText = "Gratulálunk, megdöntötted a rekordot!\nAdd meg az e-mail címed és ha december 24-ig te maradsz a toplista élén megajádnékozunk egy általad választott 32 centis pizzával!"
+		var email = prompt(congratsText);
+		while (email == null || person.trim().length < 5) {
+			email = prompt(congratsText);
 		}
+		updateHighscore(SCORE, email);
 		alert("Köszönjük! A nyertest még idén értesítjük az eredményről");
 	}
 
@@ -418,12 +419,21 @@ function getHighestScore() {
 		.catch(console.log)
 }
 function updateHighscore(s, e) {
-	return fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
-		method: 'post',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({
-			score: s,
-			email: e
+	if (s === HIGHSCORE){
+		return fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				score: s,
+				email: e
+			})
+				.then(response => response.json())
+				.then(response => {
+					if (response) { }
+				}).catch(console.log)
 		})
-	})
+			.catch(err => console.log("Unable to reach Heroku server"));
+	}else{
+		return "Unauthorized set attempt at updateHighscore."
+	}
 }
