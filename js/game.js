@@ -2,7 +2,7 @@ var KEYDOWN = false;
 var PAUSE = false;
 var LOCK = false;
 
-var HIGHSCORE = getHighestScore() || 100;
+var HIGHSCORE = getHighestScore();
 var SCORE = 0;
 var SCORE_BUBBLE = 1;
 var SCORE_SUPER_BUBBLE = 5;
