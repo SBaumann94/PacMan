@@ -451,7 +451,7 @@ function getCouponCode() {
 	})
 		.then(response => response.json())
 		.then(c => {
-			console.log(c.code)
+			console.log(c)
 			if (c.id) {
 				COUPONCODE = c.code
 			} else {
@@ -470,7 +470,7 @@ function setCouponGiven() {
 	})
 		.then(response => response.json())
 		.then(res => {
-			console.log(res.given)
+			console.log("I'm res",res)
 		})
 		.catch(console.log);
 }
