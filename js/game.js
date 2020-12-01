@@ -458,7 +458,7 @@ function getCouponCode() {
 		.catch(console.log)
 }
 function setCouponGiven() {
-	fetch('https://desolate-citadel-62473.herokuapp.com/setCoupon', {
+	return fetch('https://desolate-citadel-62473.herokuapp.com/setCoupon', {
 		method: 'put',
 		mode: 'cors',
 		headers: { 'Content-Type': 'application/json' },
@@ -469,7 +469,6 @@ function setCouponGiven() {
 		.then(response => response.json())
 		.then(res => {
 			console.log(res)
-			return "Sikeres mentés, köszönjük! A nyertest még idén értesítjük az eredményről";
 		})
 		.catch(console.log);
 }

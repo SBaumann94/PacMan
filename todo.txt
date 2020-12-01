@@ -1,4 +1,0 @@
--server for highscores 
-	- email address storage
-	- get unique coupon code
-
