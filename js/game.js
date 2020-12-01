@@ -39,9 +39,13 @@ function initGame(newgame) {
 		stopTrailer();
 
 		console.log("sajt")
-		dbHighscore = await getHighestScore(); 
-		console.log(HIGHSCORE, " =? ",dbHighscore)
-		HIGHSCORE = dbHighscore;
+		if (dbHighscore < 100) {
+			dbHighscore = getHighestScore();
+			console.log(HIGHSCORE, " =? ", dbHighscore)
+		}
+		else {
+			HIGHSCORE = dbHighscore;
+		}
 		HOME = false;
 		GAMEOVER = false;
 
@@ -403,10 +407,10 @@ function getHighestScore() {
 	})
 		.then(response => response.json())
 		.then(s => {
-			console.log(s)
+			console.log(s.score)
 			if (s.id) {
 				return Number(s.score)
-			}else{
+			} else {
 				alert(s)
 			}
 		})
