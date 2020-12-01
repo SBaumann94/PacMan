@@ -433,7 +433,7 @@ function updateHighscore(score, email) {
 				email: email
 			})
 		}).then(response => response.json())
-			.catch(err => console.log("Unable to reach Heroku server"));
+			.catch(err => console.log("Unable to reach Heroku server ",err));
 	} else {
 		return "Unauthorized set attempt at updateHighscore."
 	}
@@ -458,7 +458,7 @@ function getCouponCode() {
 		.catch(console.log)
 }
 function setCouponGiven() {
-	return fetch('https://desolate-citadel-62473.herokuapp.com/setCoupon', {
+	fetch('https://desolate-citadel-62473.herokuapp.com/setCoupon', {
 		method: 'put',
 		mode: 'cors',
 		headers: { 'Content-Type': 'application/json' },
