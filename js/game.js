@@ -473,7 +473,7 @@ function setCouponGiven() {
 	})
 		.then(response => response.json())
 		.then(res => {
-			console.log("I'm res ", res)
+			console.log(res)
 		})
 		.catch(console.log);
 }
