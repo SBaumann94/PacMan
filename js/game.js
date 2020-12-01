@@ -38,6 +38,7 @@ function initGame(newgame) {
 		stopPresentation();
 		stopTrailer();
 		
+		console.log(HIGHSCORE, " =? ",dbHighscore)
 		HIGHSCORE = dbHighscore;
 		HOME = false;
 		GAMEOVER = false;
