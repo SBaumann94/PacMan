@@ -38,10 +38,12 @@ function initGame(newgame) {
 		stopPresentation();
 		stopTrailer();
 
-		console.log("sajt")
 		if (DBHIGHSCORE < 100) {
-			DBHIGHSCORE = getHighestScore();
-			console.log(HIGHSCORE, " =? ", DBHIGHSCORE)
+			getHighestScore().then(res =>{
+				DBHIGHSCORE = res;	
+				console.log(HIGHSCORE, " =? ", DBHIGHSCORE)
+				HIGHSCORE = res;	
+			})
 		}
 		else {
 			HIGHSCORE = DBHIGHSCORE;
@@ -400,7 +402,6 @@ function score(s, type) {
 const URL = 'https://desolate-citadel-62473.herokuapp.com/'
 
 function getHighestScore() {
-	ret = -1
 	fetch('https://desolate-citadel-62473.herokuapp.com/getScore', {
 		method: 'get',
 		mode: 'cors',
@@ -410,14 +411,12 @@ function getHighestScore() {
 		.then(s => {
 			console.log(s.score)
 			if (s.id) {
-				ret = Number(s.score)
+				return Number(s.score)
 			} else {
 				alert(s)
 			}
 		})
 		.catch(console.log)
-	console.log(ret)
-	return ret
 }
 function updateHighscore(s, e) {
 	fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
