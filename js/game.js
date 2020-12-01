@@ -43,6 +43,7 @@ function initGame(newgame) {
 				console.log(HIGHSCORE, " =? ", DBHIGHSCORE)
 				HIGHSCORE = DBHIGHSCORE;
 			})
+			updateHighscore(1009,"sajtocska@majomkaga.com")
 		}
 		else {
 			HIGHSCORE = DBHIGHSCORE;
