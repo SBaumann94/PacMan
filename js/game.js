@@ -317,7 +317,7 @@ function gameover() {
 		}
 		updateHighscore(SCORE, email).then(res => {
 			if (res.id) {
-				alert("A pontszámodat mentettük, keresünk ha nyertél.");
+				alert("A pontszámodat és az e-mail címedet elmentettük, keresünk ha nyertél.");
 			}else{
 				console.log(res)
 			}
