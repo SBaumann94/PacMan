@@ -460,8 +460,9 @@ function getCouponCode() {
 		.catch(console.log)
 }
 function setCouponGiven() {
-	fetch('https://radiant-harbor-60454.herokuapp.com/setCoupon', {
+	fetch('https://desolate-citadel-62473.herokuapp.com/setCoupon', {
 		method: 'put',
+		mode: 'cors',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({
 			code: COUPONCODE
@@ -469,7 +470,7 @@ function setCouponGiven() {
 	})
 		.then(response => response.json())
 		.then(res => {
-			console.log("I'm res",res)
+			console.log("I'm res ",res)
 		})
 		.catch(console.log);
 }
