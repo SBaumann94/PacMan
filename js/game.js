@@ -400,7 +400,7 @@ function score(s, type) {
 const URL = 'https://desolate-citadel-62473.herokuapp.com/'
 
 function getHighestScore() {
-	fetch('https://desolate-citadel-62473.herokuapp.com/getScore', {
+	await fetch('https://desolate-citadel-62473.herokuapp.com/getScore', {
 		method: 'get',
 		mode: 'cors',
 		headers: { 'Content-Type': 'application/json' }
