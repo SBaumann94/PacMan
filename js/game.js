@@ -316,8 +316,7 @@ function gameover() {
 			email = prompt(congratsText);
 		}
 		updateHighscore(SCORE, email).then(res=>{
-
-			alert("Sikeres mentés, köszönjük! A nyertest még idén értesítjük az eredményről");
+			alert(res);
 		});
 		DBHIGHSCORE = SCORE;
 	}
@@ -434,9 +433,6 @@ function updateHighscore(score, email) {
 				email: email
 			})
 		}).then(response => response.json())
-			.then(response => {
-				if (response) { }
-			})
 			.catch(err => console.log("Unable to reach Heroku server"));
 	} else {
 		return "Unauthorized set attempt at updateHighscore."
@@ -462,7 +458,7 @@ function getCouponCode() {
 		.catch(console.log)
 }
 function setCouponGiven() {
-	return fetch('https://desolate-citadel-62473.herokuapp.com/setCoupon', {
+	fetch('https://desolate-citadel-62473.herokuapp.com/setCoupon', {
 		method: 'put',
 		mode: 'cors',
 		headers: { 'Content-Type': 'application/json' },
@@ -473,6 +469,7 @@ function setCouponGiven() {
 		.then(response => response.json())
 		.then(res => {
 			console.log(res)
+			return "Sikeres mentés, köszönjük! A nyertest még idén értesítjük az eredményről";
 		})
 		.catch(console.log);
 }
