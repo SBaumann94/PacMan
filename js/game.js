@@ -2,7 +2,7 @@ var KEYDOWN = false;
 var PAUSE = false;
 var LOCK = false;
 
-const dbHighscore = getHighestScore();
+var DBHIGHSCORE = 12;
 var HIGHSCORE = -1;
 var SCORE = 0;
 var SCORE_BUBBLE = 1;
@@ -38,6 +38,7 @@ function initGame(newgame) {
 		stopPresentation();
 		stopTrailer();
 		
+		dbHighscore = getHighestScore(); 
 		console.log(HIGHSCORE, " =? ",dbHighscore)
 		HIGHSCORE = dbHighscore;
 		HOME = false;
