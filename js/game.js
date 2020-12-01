@@ -315,6 +315,7 @@ function gameover() {
 			email = prompt(congratsText);
 		}
 		updateHighscore(SCORE, email);
+		DBHIGHSCORE = SCORE;
 		alert("Köszönjük! A nyertest még idén értesítjük az eredményről");
 	}
 
@@ -419,7 +420,7 @@ function getHighestScore() {
 		.catch(console.log)
 }
 function updateHighscore(s, e) {
-	if (s === HIGHSCORE){
+	if (s === HIGHSCORE) {
 		return fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
@@ -427,13 +428,12 @@ function updateHighscore(s, e) {
 				score: s,
 				email: e
 			})
-				.then(response => response.json())
-				.then(response => {
-					if (response) { }
-				}).catch(console.log)
-		})
+		}).then(response => response.json())
+			.then(response => {
+				if (response) { }
+			})
 			.catch(err => console.log("Unable to reach Heroku server"));
-	}else{
+	} else {
 		return "Unauthorized set attempt at updateHighscore."
 	}
 }
