@@ -40,9 +40,10 @@ function initGame(newgame) {
 
 		if (DBHIGHSCORE < 100) {
 			getHighestScore().then(res =>{
-				DBHIGHSCORE = res;	
+				x = Number(res.score)
+				DBHIGHSCORE = x;	
 				console.log(HIGHSCORE, " =? ", DBHIGHSCORE)
-				HIGHSCORE = res;	
+				HIGHSCORE = x;	
 			})
 		}
 		else {
