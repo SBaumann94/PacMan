@@ -400,7 +400,7 @@ function getHighestScore() {
 		.then(s => {
 			console.log(s)
 			if (s.id) {
-				return s.score
+				return Number(s.score)
 			}else{
 				alert(s)
 			}
