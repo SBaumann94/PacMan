@@ -469,8 +469,8 @@ function setCouponGiven() {
 		})
 	})
 		.then(response => response.json())
-		.then(count => {
-			this.setState(Object.assign(this.state.user, { entries: count }))
+		.then(res => {
+			console.log(res.given)
 		})
 		.catch(console.log);
 }
