@@ -400,7 +400,8 @@ function score(s, type) {
 const URL = 'https://desolate-citadel-62473.herokuapp.com/'
 
 function getHighestScore() {
-	await fetch('https://desolate-citadel-62473.herokuapp.com/getScore', {
+	ret = -1
+	fetch('https://desolate-citadel-62473.herokuapp.com/getScore', {
 		method: 'get',
 		mode: 'cors',
 		headers: { 'Content-Type': 'application/json' }
@@ -409,12 +410,14 @@ function getHighestScore() {
 		.then(s => {
 			console.log(s.score)
 			if (s.id) {
-				return Number(s.score)
+				ret = Number(s.score)
 			} else {
 				alert(s)
 			}
 		})
 		.catch(console.log)
+	console.log(ret)
+	return ret
 }
 function updateHighscore(s, e) {
 	fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
