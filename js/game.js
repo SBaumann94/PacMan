@@ -48,10 +48,6 @@ function initGame(newgame) {
 		else {
 			HIGHSCORE = DBHIGHSCORE;
 		}
-		getCouponCode().then(res => {
-			console.log("Recieved: ",COUPONCODE)
-			setCouponGiven();
-		});
 		HOME = false;
 		GAMEOVER = false;
 
@@ -311,7 +307,6 @@ function gameover() {
 
 	resetPacman();
 	resetGhosts();
-	/* 
 	if (SCORE > DBHIGHSCORE) {//new highscore
 
 		//Getting the e-mail of the new top player
@@ -323,14 +318,16 @@ function gameover() {
 		updateHighscore(SCORE, email);
 		DBHIGHSCORE = SCORE;
 		alert("Köszönjük! A nyertest még idén értesítjük az eredményről");
-	} */
+	}
 
 	if (LEVEL > 4) {
-		const congratsText = "Gratulálunk, nyertél egy 10%-os kupont!\n(A kódot a vágólapra másoltuk neked, Ctrl + V-vel beillesztheted)\nA kupon egyszer felhasználható és nem vonható össze több kuponnal.\nLegyen szép napod és boldog karácsonyt! :)"
-		alert(congratsText);
-		var code = "oyBQnzg8R";
-		//kuponkód lekérése a szerverről
-		copyToClipboard(code);
+		const congratsText = "Gratulálunk, nyertél egy 10%-os kupont!\n(A kódot a vágólapra másoltuk neked, Ctrl + V-vel beillesztheted)\nA kupon egyszer felhasználható és nem vonható össze több kuponnal.\nLegyen szép napod és boldog karácsonyt! :)\n"
+		getCouponCode().then(res => {
+			copyToClipboard(COUPONCODE);
+			console.log("Recieved: ", COUPONCODE)
+			setCouponGiven();
+			alert(congratsText, COUPONCODE);
+		});
 	}
 	TIME_GAME = 0;
 	TIME_LEVEL = 0;
@@ -424,15 +421,15 @@ function getHighestScore() {
 		})
 		.catch(console.log)
 }
-function updateHighscore(s, e) {
+function updateHighscore(score, email) {
 	//	if (s === HIGHSCORE) {
 	return fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
 		method: 'post',
 		mode: 'cors',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({
-			score: s,
-			email: e
+			score: score,
+			email: email
 		})
 	}).then(response => response.json())
 		.then(response => {
