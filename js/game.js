@@ -310,19 +310,23 @@ function gameover() {
 	if (SCORE > DBHIGHSCORE) {//new highscore
 
 		//Getting the e-mail of the new top player
-		const congratsText = "Gratulálunk, megdöntötted a rekordot!\nAdd meg az e-mail címed és ha december 24-ig te maradsz a toplista élén megajádnékozunk egy általad választott 32 centis pizzával!"
+		const congratsText = "Gratulálunk, megdöntötted a rekordot!\nAdd meg az e-mail címed, és ha december 24. 18:00-ig te maradsz a toplista élén megajándékozunk egy általad választott 32 centis pizzával!"
 		var email = prompt(congratsText);
 		while (email == null || email.trim().length < 5) {
 			email = prompt(congratsText);
 		}
-		updateHighscore(SCORE, email).then(res=>{
-			alert(res);
+		updateHighscore(SCORE, email).then(res => {
+			if (res.id) {
+				alert("A pontszámodat mentettük, keresünk ha nyertél.");
+			}else{
+				console.log(res)
+			}
 		});
 		DBHIGHSCORE = SCORE;
 	}
 
 	if (LEVEL > 4) {
-		const congratsText = "Gratulálunk, nyertél egy 10%-os kupont!\n(A kódot a vágólapra másoltuk neked, Ctrl + V-vel beillesztheted)\nA kupon egyszer felhasználható és nem vonható össze több kuponnal.\nLegyen szép napod és boldog karácsonyt! :)\n"
+		const congratsText = "Gratulálunk, nyertél egy 10%-os kupont!\n(A kódot a vágólapra másoltuk neked, Ctrl + V-vel beillesztheted)\nA kupon egyszer felhasználható és nem vonható össze több kuponnal. Kérjük rendelésed leadásakor olvasd be a kódodat.\nLegyen szép napod és boldog karácsonyt! :)\n"
 		getCouponCode().then(res => {
 			copyToClipboard(COUPONCODE);
 			console.log("Recieved: ", COUPONCODE)
@@ -433,7 +437,7 @@ function updateHighscore(score, email) {
 				email: email
 			})
 		}).then(response => response.json())
-			.catch(err => console.log("Unable to reach Heroku server ",err));
+			.catch(err => console.log("Unable to reach Heroku server ", err));
 	} else {
 		return "Unauthorized set attempt at updateHighscore."
 	}
