@@ -4,14 +4,14 @@ var LOCK = false;
 
 var COUPONCODE = "INVALID";
 
-var DBHIGHSCORE = 12;
+var DBHIGHSCORE = -1;
 var HIGHSCORE = -1;
 var SCORE = 0;
 var SCORE_BUBBLE = 1;
 var SCORE_SUPER_BUBBLE = 5;
 var SCORE_GHOST_COMBO = 100;
 
-var LIFES = 0;
+var LIFES = 2;
 var GAMEOVER = false;
 
 var LEVEL = 1;
@@ -40,7 +40,7 @@ function initGame(newgame) {
 		stopPresentation();
 		stopTrailer();
 
-		if (DBHIGHSCORE < 100) {
+		if (DBHIGHSCORE < 0) {
 			getHighestScore().then(res => {
 				HIGHSCORE = DBHIGHSCORE;
 			})
@@ -315,9 +315,11 @@ function gameover() {
 		while (email == null || email.trim().length < 5) {
 			email = prompt(congratsText);
 		}
-		updateHighscore(SCORE, email);
+		updateHighscore(SCORE, email).then(res=>{
+
+			alert("Sikeres mentés, köszönjük! A nyertest még idén értesítjük az eredményről");
+		});
 		DBHIGHSCORE = SCORE;
-		alert("Köszönjük! A nyertest még idén értesítjük az eredményről");
 	}
 
 	if (LEVEL > 4) {
@@ -334,7 +336,7 @@ function gameover() {
 	TIME_LIFE = 0;
 	TIME_FRUITS = 0;
 
-	LIFES = 2;
+	LIFES = 3;
 	LEVEL = 1;
 
 	SCORE = 0;
@@ -422,24 +424,24 @@ function getHighestScore() {
 		.catch(console.log)
 }
 function updateHighscore(score, email) {
-	//	if (s === HIGHSCORE) {
-	return fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
-		method: 'post',
-		mode: 'cors',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({
-			score: score,
-			email: email
-		})
-	}).then(response => response.json())
-		.then(response => {
-			if (response) { }
-		})
-		.catch(err => console.log("Unable to reach Heroku server"));
-	/* 	} else {
-			return "Unauthorized set attempt at updateHighscore."
-		}
-	*/
+	if (score === HIGHSCORE) {
+		return fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
+			method: 'post',
+			mode: 'cors',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				score: score,
+				email: email
+			})
+		}).then(response => response.json())
+			.then(response => {
+				if (response) { }
+			})
+			.catch(err => console.log("Unable to reach Heroku server"));
+	} else {
+		return "Unauthorized set attempt at updateHighscore."
+	}
+
 }
 
 function getCouponCode() {
