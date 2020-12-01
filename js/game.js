@@ -37,8 +37,8 @@ function initGame(newgame) {
 	if (newgame) {
 		stopPresentation();
 		stopTrailer();
-		
-		console.log(HIGHSCORE, " =? ",dbHighscore)
+
+		console.log("sajt")
 		dbHighscore = await getHighestScore(); 
 		console.log(HIGHSCORE, " =? ",dbHighscore)
 		HIGHSCORE = dbHighscore;
