@@ -414,7 +414,6 @@ function getHighestScore() {
 	})
 		.then(response => response.json())
 		.then(s => {
-			console.log(s.score)
 			if (s.id) {
 				DBHIGHSCORE = Number(s.score)
 			} else {
@@ -452,7 +451,7 @@ function getCouponCode() {
 		.then(response => response.json())
 		.then(c => {
 			console.log(c)
-			if (c.id) {
+			if (c.code) {
 				COUPONCODE = c.code
 			} else {
 				alert(c)
