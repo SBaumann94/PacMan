@@ -336,7 +336,7 @@ function gameover() {
 	TIME_LIFE = 0;
 	TIME_FRUITS = 0;
 
-	LIFES = 3;
+	LIFES = 2;
 	LEVEL = 1;
 
 	SCORE = 0;
