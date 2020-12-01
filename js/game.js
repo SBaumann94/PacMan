@@ -460,7 +460,7 @@ function getCouponCode() {
 		.catch(console.log)
 }
 function setCouponGiven() {
-	fetch('https://radiant-harbor-60454.herokuapp.com/image', {
+	fetch('https://radiant-harbor-60454.herokuapp.com/setCoupon', {
 		method: 'put',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({
