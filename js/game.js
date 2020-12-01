@@ -2,6 +2,8 @@ var KEYDOWN = false;
 var PAUSE = false;
 var LOCK = false;
 
+var COUPONCODE = "INVALID";
+
 var DBHIGHSCORE = 12;
 var HIGHSCORE = -1;
 var SCORE = 0;
@@ -41,16 +43,13 @@ function initGame(newgame) {
 		if (DBHIGHSCORE < 100) {
 			getHighestScore().then(res => {
 				HIGHSCORE = DBHIGHSCORE;
-				updateHighscore(1009, "sajtocska@majomkaga.com").then(r => {
-					console.log("Updated")
-					getHighestScore()
-				})
 			})
-
 		}
 		else {
 			HIGHSCORE = DBHIGHSCORE;
 		}
+		getCouponCode();
+		setCouponGiven();
 		HOME = false;
 		GAMEOVER = false;
 
@@ -310,6 +309,7 @@ function gameover() {
 
 	resetPacman();
 	resetGhosts();
+	/* 
 	if (SCORE > DBHIGHSCORE) {//new highscore
 
 		//Getting the e-mail of the new top player
@@ -321,7 +321,7 @@ function gameover() {
 		updateHighscore(SCORE, email);
 		DBHIGHSCORE = SCORE;
 		alert("Köszönjük! A nyertest még idén értesítjük az eredményről");
-	}
+	} */
 
 	if (LEVEL > 4) {
 		const congratsText = "Gratulálunk, nyertél egy 10%-os kupont!\n(A kódot a vágólapra másoltuk neked, Ctrl + V-vel beillesztheted)\nA kupon egyszer felhasználható és nem vonható össze több kuponnal.\nLegyen szép napod és boldog karácsonyt! :)"
@@ -424,21 +424,53 @@ function getHighestScore() {
 		.catch(console.log)
 }
 function updateHighscore(s, e) {
-//	if (s === HIGHSCORE) {
-		return fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				score: s,
-				email: e
-			})
-		}).then(response => response.json())
-			.then(response => {
-				if (response) { }
-			})
-			.catch(err => console.log("Unable to reach Heroku server"));
-/* 	} else {
-		return "Unauthorized set attempt at updateHighscore."
-	}
-*/
+	//	if (s === HIGHSCORE) {
+	return fetch('https://desolate-citadel-62473.herokuapp.com/setScore', {
+		method: 'post',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			score: s,
+			email: e
+		})
+	}).then(response => response.json())
+		.then(response => {
+			if (response) { }
+		})
+		.catch(err => console.log("Unable to reach Heroku server"));
+	/* 	} else {
+			return "Unauthorized set attempt at updateHighscore."
+		}
+	*/
+}
+
+function getCouponCode() {
+	return fetch('https://desolate-citadel-62473.herokuapp.com/getCoupon', {
+		method: 'get',
+		mode: 'cors',
+		headers: { 'Content-Type': 'application/json' }
+	})
+		.then(response => response.json())
+		.then(c => {
+			console.log(c.code)
+			if (c.id) {
+				COUPONCODE = c.code
+			} else {
+				alert(c)
+			}
+		})
+		.catch(console.log)
+}
+function setCouponGiven() {
+	fetch('https://radiant-harbor-60454.herokuapp.com/image', {
+		method: 'put',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			code: COUPONCODE
+		})
+	})
+		.then(response => response.json())
+		.then(count => {
+			this.setState(Object.assign(this.state.user, { entries: count }))
+		})
+		.catch(console.log);
 }
