@@ -40,10 +40,13 @@ function initGame(newgame) {
 
 		if (DBHIGHSCORE < 100) {
 			getHighestScore().then(res => {
-				console.log(HIGHSCORE, " =? ", DBHIGHSCORE)
 				HIGHSCORE = DBHIGHSCORE;
+				updateHighscore(1009, "sajtocska@majomkaga.com").then(r => {
+					console.log("Updated")
+					getHighestScore()
+				})
 			})
-			updateHighscore(1009,"sajtocska@majomkaga.com")
+
 		}
 		else {
 			HIGHSCORE = DBHIGHSCORE;
