@@ -39,11 +39,9 @@ function initGame(newgame) {
 		stopTrailer();
 
 		if (DBHIGHSCORE < 100) {
-			getHighestScore().then(res =>{
-				x = Number(res.score)
-				DBHIGHSCORE = x;	
+			getHighestScore().then(res => {
 				console.log(HIGHSCORE, " =? ", DBHIGHSCORE)
-				HIGHSCORE = x;	
+				HIGHSCORE = DBHIGHSCORE;
 			})
 		}
 		else {
@@ -412,7 +410,7 @@ function getHighestScore() {
 		.then(s => {
 			console.log(s.score)
 			if (s.id) {
-				//return Number(s.score)
+				DBHIGHSCORE = Number(s.score)
 			} else {
 				alert(s)
 			}
