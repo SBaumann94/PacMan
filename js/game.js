@@ -318,7 +318,7 @@ function gameover() {
 		updateHighscore(SCORE, email).then(res => {
 			if (res.id) {
 				alert("A pontszámodat és az e-mail címedet elmentettük, keresünk ha nyertél.");
-			}else{
+			} else {
 				console.log(res)
 			}
 		});
@@ -326,12 +326,11 @@ function gameover() {
 	}
 
 	if (LEVEL > 4) {
-		const congratsText = "Gratulálunk, nyertél egy 10%-os kupont!\n(A kódot a vágólapra másoltuk neked, Ctrl + V-vel beillesztheted)\nA kupon egyszer felhasználható és nem vonható össze több kuponnal. Kérjük rendelésed leadásakor olvasd be a kódodat.\nLegyen szép napod és boldog karácsonyt! :)\n"
+		const congratsText = "Gratulálunk, nyertél egy 10%-os kupont! " + COUPONCODE + "\n(A kódot a vágólapra másoltuk neked, Ctrl + V-vel beillesztheted)\nA kupon egyszer felhasználható és nem vonható össze több kuponnal. Kérjük rendelésed leadásakor olvasd be a kódodat.\nLegyen szép napod és boldog karácsonyt! :)"
 		getCouponCode().then(res => {
 			copyToClipboard(COUPONCODE);
-			console.log("Recieved: ", COUPONCODE)
 			setCouponGiven();
-			alert(congratsText, COUPONCODE);
+			alert(congratsText);
 		});
 	}
 	TIME_GAME = 0;
@@ -344,17 +343,13 @@ function gameover() {
 
 	SCORE = 0;
 }
-const copyToClipboard = str => {
-	const el = document.createElement('textarea');
-	el.value = str;
-	el.setAttribute('readonly', '');
-	el.style.position = 'absolute';
-	el.style.left = '-9999px';
-	document.body.appendChild(el);
-	el.select();
-	document.execCommand('copy');
-	document.body.removeChild(el);
-};
+function copyToClipboard(str) {
+	navigator.clipboard.writeText(str).then(function () {
+		console.log('Async: Copying to clipboard was successful!');
+	}, function (err) {
+		console.error('Async: Could not copy text: ', err);
+	});
+}
 
 
 function message(m) {
@@ -437,7 +432,7 @@ function updateHighscore(score, email) {
 				email: email
 			})
 		}).then(response => response.json())
-			.catch(err => console.log("Unable to reach Heroku server ", err));
+			.catch(err => console.log("Unable to reach Heroku server "));
 	} else {
 		return "Unauthorized set attempt at updateHighscore."
 	}
@@ -452,7 +447,6 @@ function getCouponCode() {
 	})
 		.then(response => response.json())
 		.then(c => {
-			console.log(c)
 			if (c.code) {
 				COUPONCODE = c.code
 			} else {
@@ -471,8 +465,5 @@ function setCouponGiven() {
 		})
 	})
 		.then(response => response.json())
-		.then(res => {
-			console.log(res)
-		})
 		.catch(console.log);
 }
