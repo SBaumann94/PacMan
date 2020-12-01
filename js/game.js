@@ -38,7 +38,8 @@ function initGame(newgame) {
 		stopPresentation();
 		stopTrailer();
 		
-		dbHighscore = getHighestScore(); 
+		console.log(HIGHSCORE, " =? ",dbHighscore)
+		dbHighscore = await getHighestScore(); 
 		console.log(HIGHSCORE, " =? ",dbHighscore)
 		HIGHSCORE = dbHighscore;
 		HOME = false;
