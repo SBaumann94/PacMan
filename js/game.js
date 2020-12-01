@@ -48,8 +48,9 @@ function initGame(newgame) {
 		else {
 			HIGHSCORE = DBHIGHSCORE;
 		}
-		getCouponCode();
-		setCouponGiven();
+		getCouponCode().then(res => {
+			setCouponGiven();
+		});
 		HOME = false;
 		GAMEOVER = false;
 
@@ -470,7 +471,7 @@ function setCouponGiven() {
 	})
 		.then(response => response.json())
 		.then(res => {
-			console.log("I'm res ",res)
+			console.log("I'm res ", res)
 		})
 		.catch(console.log);
 }
