@@ -25,8 +25,8 @@
 html, body { 
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
-	width: 80%;
-	height: 80%;
+	width: 100%;
+	height: 100%;
 }
 html  { 
 	background-color: #000;
@@ -371,7 +371,7 @@ h3 {
 }
 
 
-/*
+
 @media screen and (min-height:1200px), screen and (min-device-height : 1200px) { 
 	#panel, #home { 
 		zoom: 135%;
@@ -379,21 +379,23 @@ h3 {
 }
 
 @media screen and (max-width:1024px), screen and (min-device-width : 768px) and (max-device-width : 1024px) { 
-	#home .help-button, #panel .help-button, #home .github, #sound, .sound { 
-		display: none;
-	}
 	#panel, #home { 
 		zoom: 105%;
+	}
+	/*
+	#home .help-button, #panel .help-button, #home .github, #sound, .sound { 
+		display: none;
 	}
 	#control-up-big, #control-down-big, #control-left-big, #control-right-big { 
 		display: inline; 
 	} 
-
+	*/
 }
 @media screen and (max-height:640px), screen and (min-device-height : 480px) and (max-device-height : 640px) and (-webkit-device-pixel-ratio: 3) { 
 	#panel, #home { 
 		zoom: 60%;
 	}
+	/*
 	#control-up-big, #control-down-big, #control-left-big, #control-right-big { 
 		display: inline; 
 	} 
@@ -403,11 +405,13 @@ h3 {
 	h1, #canvas-panel-title-pacman { 
 		visibility: hidden;
 	}
+	*/
 }
 @media screen and (max-height:480px), screen and (min-device-height : 320px) and (max-device-height : 480px) { 
 	#panel, #home { 
 		zoom: 55%;
 	}
+	/*
 	#control-up-big, #control-down-big, #control-left-big, #control-right-big { 
 		display: inline; 
 	} 
@@ -439,5 +443,5 @@ h3 {
 	#message { 
 		top: 347px;
 	}
+	*/
 }
-*/
