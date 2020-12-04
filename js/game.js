@@ -37,6 +37,7 @@ function blinkHelp() {
 
 function initGame(newgame) {
 	if (newgame) {
+		console.log("test1")
 		stopPresentation();
 		stopTrailer();
 
