@@ -37,7 +37,7 @@ function blinkHelp() {
 
 function initGame(newgame) {
 	if (newgame) {
-		console.log("test2")
+		console.log("test3")
 		stopPresentation();
 		stopTrailer();
 
@@ -327,13 +327,11 @@ function gameover() {
 	}
 
 	if (LEVEL > 4) {
-		const congratsText = "Gratulálunk, nyertél egy 10%-os kupont! " + COUPONCODE + "\n(A kódot a vágólapra másoltuk neked, Ctrl + V-vel beillesztheted)\nA kupon egyszer felhasználható és nem vonható össze több kuponnal. Kérjük rendelésed leadásakor olvasd be a kódodat.\nLegyen szép napod és boldog karácsonyt! :)"
-		getCouponCode().then(res => {
-			//copyToClipboard(COUPONCODE);			
+		getCouponCod-e().then(res => {
 			console.log(res)
 			console.log(COUPONCODE)
 			setCouponGiven();
-			alert(congratsText);
+			alert("Gratulálunk, nyertél egy 10%-os kupont!\n>>> " + COUPONCODE + "<<< \nA kupon egyszer felhasználható és nem vonható össze több kuponnal. Kérjük rendelésed leadásakor olvasd be a kódodat.\nLegyen szép napod és boldog karácsonyt! :)");
 		});
 	}
 	TIME_GAME = 0;
@@ -346,14 +344,6 @@ function gameover() {
 
 	SCORE = 0;
 }
-function copyToClipboard(str) {
-	navigator.clipboard.writeText(str).then(function () {
-		console.log('Async: Copying to clipboard was successful!');
-	}, function (err) {
-		console.error('Async: Could not copy text: ', err);
-	});
-}
-
 
 function message(m) {
 	$("#message").html(m);
