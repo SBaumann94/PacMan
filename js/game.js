@@ -37,7 +37,7 @@ function blinkHelp() {
 
 function initGame(newgame) {
 	if (newgame) {
-		console.log("test1")
+		console.log("test2")
 		stopPresentation();
 		stopTrailer();
 
@@ -329,8 +329,9 @@ function gameover() {
 	if (LEVEL > 4) {
 		const congratsText = "Gratulálunk, nyertél egy 10%-os kupont! " + COUPONCODE + "\n(A kódot a vágólapra másoltuk neked, Ctrl + V-vel beillesztheted)\nA kupon egyszer felhasználható és nem vonható össze több kuponnal. Kérjük rendelésed leadásakor olvasd be a kódodat.\nLegyen szép napod és boldog karácsonyt! :)"
 		getCouponCode().then(res => {
-			copyToClipboard(COUPONCODE);			
+			//copyToClipboard(COUPONCODE);			
 			console.log(res)
+			console.log(COUPONCODE)
 			setCouponGiven();
 			alert(congratsText);
 		});
