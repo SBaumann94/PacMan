@@ -37,7 +37,6 @@ function blinkHelp() {
 
 function initGame(newgame) {
 	if (newgame) {
-		console.log("test4")
 		stopPresentation();
 		stopTrailer();
 
@@ -328,9 +327,8 @@ function gameover() {
 
 	if (LEVEL > 4) {
 		getCouponCode().then(res => {
-			console.log(COUPONCODE)
 			setCouponGiven();
-			alert("Gratulálunk, nyertél egy 10%-os kupont!\n>>> " + COUPONCODE + "<<< \nA kupon egyszer felhasználható és nem vonható össze több kuponnal. Kérjük rendelésed leadásakor olvasd be a kódodat.\nLegyen szép napod és boldog karácsonyt! :)");
+			alert("Gratulálunk, nyertél egy 10%-os kupont!\n>>> " + COUPONCODE + " <<<\nA kupon egyszer felhasználható és nem vonható össze több kuponnal. Kérjük rendelésed leadásakor olvasd be a kódodat.\nLegyen szép napod és boldog karácsonyt! :)");
 		});
 	}
 	TIME_GAME = 0;
