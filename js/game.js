@@ -4,7 +4,7 @@ var LOCK = false;
 
 var COUPONCODE = "INVALID";
 
-var DBHIGHSCORE = -1;
+var DBHIGHSCORE = 23200;
 var HIGHSCORE = -1;
 var SCORE = 0;
 var SCORE_BUBBLE = 1;
@@ -40,7 +40,7 @@ function initGame(newgame) {
 		stopPresentation();
 		stopTrailer();
 
-		if (DBHIGHSCORE < 0) {
+		if (DBHIGHSCORE <= 23200) {
 			getHighestScore().then(res => {
 				HIGHSCORE = DBHIGHSCORE;
 			})
